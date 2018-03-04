@@ -136,6 +136,7 @@ namespace renhao.Model
             Lng = Convert.ToDouble(strs[2]) / 100;
             Height = Convert.ToDouble(strs[3]) / 10;
             Datetime = Convert.ToDateTime(strs[4] + "-" + strs[5] + "-" + strs[6]);
+            
             if (this.FileName.Contains("PRS-10004"))
             {
                 //气压  PRS-10004
@@ -172,11 +173,18 @@ namespace renhao.Model
             else if (this.FileName.Contains("WIN-11002"))
             {
                 //风向风速  WIN-11002
-                AverWindSpeed = Convert.ToDouble(strs[7]) / 10;
-                MaxWindSpeed = Convert.ToDouble(strs[8]) / 10;
-                MaxWindSpeedDirection = WindDirection[Convert.ToInt32(strs[9])];
-                VeryBigWindSpeed = Convert.ToDouble(strs[10]) / 10;
-                VeryBigWindSpeedDirection = WindDirection[Convert.ToInt32(strs[11])];
+                try
+                {
+                    AverWindSpeed = Convert.ToDouble(strs[7]) / 10;
+                    MaxWindSpeed = Convert.ToDouble(strs[8]) / 10;
+                    MaxWindSpeedDirection = WindDirection[Convert.ToInt32(strs[9])];
+                    VeryBigWindSpeed = Convert.ToDouble(strs[10]) / 10;
+                    VeryBigWindSpeedDirection = WindDirection[Convert.ToInt32(strs[11])];
+                }
+                catch(Exception ex)
+                {
+
+                }
             }
             else if (this.FileName.Contains("SSD-14032"))
             {

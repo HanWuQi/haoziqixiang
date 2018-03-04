@@ -38,7 +38,9 @@ namespace renhao
                     if (progressBar1.InvokeRequired)
                     {
                         pbRun pbrun = new pbRun(pbAdd);
+                        pbRun pbrun1 = new pbRun(SetLabelValue);
                         progressBar1.Invoke(pbrun);
+                        progressBar1.Invoke(pbrun1);
                     }
                     //if(label1.InvokeRequired)
                     //{
@@ -46,6 +48,9 @@ namespace renhao
                     //    label1.Invoke(pbrun);
                     //}
                 });
+
+                MessageBox.Show("导入完毕");
+
             });
         }
 
@@ -56,7 +61,7 @@ namespace renhao
 
         public void SetLabelValue()
         {
-            label1.Text = (100 * (progressBar1.Value / progressBar1.Maximum)).ToString()+"%";
+            label2.Text = string.Format("{0:F}%", 100 * (Convert.ToDouble(progressBar1.Value) / Convert.ToDouble(progressBar1.Maximum)));
         }
 
 
