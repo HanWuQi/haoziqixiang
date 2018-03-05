@@ -1,4 +1,5 @@
-﻿using System;
+﻿using renhao.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -21,6 +22,11 @@ namespace renhao
         {
             ChooseFolder cf = new ChooseFolder();
             cf.ShowDialog();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var list = DataModel.GetData();
         }
     }
 }

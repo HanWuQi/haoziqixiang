@@ -99,7 +99,7 @@ namespace renhao.Model
         /// <summary>
         /// 最大风速风向
         /// </summary>
-        public string MaxWindSpeedDirection { get; set; }
+        public int MaxWindSpeedDirection { get; set; }
         /// <summary>
         /// 极大风速
         /// </summary>
@@ -107,7 +107,7 @@ namespace renhao.Model
         /// <summary>
         /// 极大风速风向
         /// </summary>
-        public string VeryBigWindSpeedDirection { get; set; }
+        public int VeryBigWindSpeedDirection { get; set; }
         /// <summary>
         /// 日照时数
         /// </summary>
@@ -173,18 +173,11 @@ namespace renhao.Model
             else if (this.FileName.Contains("WIN-11002"))
             {
                 //风向风速  WIN-11002
-                try
-                {
-                    AverWindSpeed = Convert.ToDouble(strs[7]) / 10;
-                    MaxWindSpeed = Convert.ToDouble(strs[8]) / 10;
-                    MaxWindSpeedDirection = WindDirection[Convert.ToInt32(strs[9])];
-                    VeryBigWindSpeed = Convert.ToDouble(strs[10]) / 10;
-                    VeryBigWindSpeedDirection = WindDirection[Convert.ToInt32(strs[11])];
-                }
-                catch(Exception ex)
-                {
-
-                }
+                AverWindSpeed = Convert.ToDouble(strs[7]) / 10;
+                MaxWindSpeed = Convert.ToDouble(strs[8]) / 10;
+                MaxWindSpeedDirection = Convert.ToInt32(strs[9]);
+                VeryBigWindSpeed = Convert.ToDouble(strs[10]) / 10;
+                VeryBigWindSpeedDirection = Convert.ToInt32(strs[11]);
             }
             else if (this.FileName.Contains("SSD-14032"))
             {

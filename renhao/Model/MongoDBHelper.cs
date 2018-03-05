@@ -244,5 +244,14 @@ namespace renhao.Model
             }
             collection.BulkWrite(models, new BulkWriteOptions { IsOrdered = false });
         }
+
+        public static List<DataModel> GetData(int stationCode,DateTime startTime,DateTime endTime)
+        {
+            var res = 
+                collection
+                .Find(s => s.StationCode == stationCode && s.Datetime >= startTime && s.Datetime < endTime)
+                .ToList();
+            return res;
+        }
     }
 }
