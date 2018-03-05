@@ -23,11 +23,11 @@ namespace renhao.Model
         /// <summary>
         /// 纬度
         /// </summary>
-        public double Lat { get; set; }
+        public string Lat { get; set; }
         /// <summary>
         /// 经度
         /// </summary>
-        public double Lng { get; set; }
+        public string Lng { get; set; }
         /// <summary>
         /// 观测场海拔高度
         /// </summary>
@@ -39,91 +39,91 @@ namespace renhao.Model
         /// <summary>
         /// 平均本站气压
         /// </summary>
-        public double AverAirPressure { get; set; }
+        public string AverAirPressure { get; set; }
         /// <summary>
         /// 日最高本站气压
         /// </summary>
-        public double MaxAirPressure { get; set; }
+        public string MaxAirPressure { get; set; }
         /// <summary>
         /// 日最低本站气压
         /// </summary>
-        public double MinAirPressure { get; set; }
+        public string MinAirPressure { get; set; }
         /// <summary>
         /// 平均气温
         /// </summary>
-        public double AverTemperature { get; set; }
+        public string AverTemperature { get; set; }
         /// <summary>
         /// 日最高气温
         /// </summary>
-        public double MaxTemperature { get; set; }
+        public string MaxTemperature { get; set; }
         /// <summary>
         /// 日最低气温
         /// </summary>
-        public double MinTemperature { get; set; }
+        public string MinTemperature { get; set; }
         /// <summary>
         /// 平均相对湿度
         /// </summary>
-        public int AverRelativeHumidity { get; set; }
+        public string AverRelativeHumidity { get; set; }
         /// <summary>
         /// 最小相对湿度(仅自己）
         /// </summary>
-        public int MixRRelativeHumidity { get; set; }
+        public string MixRRelativeHumidity { get; set; }
         /// <summary>
         /// 20-8时降水量
         /// </summary>
-        public double Precipitation208 { get; set; }
+        public string Precipitation208 { get; set; }
         /// <summary>
         /// 8-20时降水量
         /// </summary>
-        public double Precipitation820 { get; set; }
+        public string Precipitation820 { get; set; }
         /// <summary>
         /// 20-20时累计降水量
         /// </summary>
-        public double Precipitation2020 { get; set; }
+        public string Precipitation2020 { get; set; }
         /// <summary>
         /// 小型蒸发量
         /// </summary>
-        public double SmallEvaporation { get; set; }
+        public string SmallEvaporation { get; set; }
         /// <summary>
         /// 大型蒸发量
         /// </summary>
-        public double BigEvaporation { get; set; }
+        public string BigEvaporation { get; set; }
         /// <summary>
         /// 平均风速
         /// </summary>
-        public double AverWindSpeed { get; set; }
+        public string AverWindSpeed { get; set; }
         /// <summary>
         /// 最大风速
         /// </summary>
-        public double MaxWindSpeed { get; set; }
+        public string MaxWindSpeed { get; set; }
         /// <summary>
         /// 最大风速风向
         /// </summary>
-        public int MaxWindSpeedDirection { get; set; }
+        public string MaxWindSpeedDirection { get; set; }
         /// <summary>
         /// 极大风速
         /// </summary>
-        public double VeryBigWindSpeed { get; set; }
+        public string VeryBigWindSpeed { get; set; }
         /// <summary>
         /// 极大风速风向
         /// </summary>
-        public int VeryBigWindSpeedDirection { get; set; }
+        public string VeryBigWindSpeedDirection { get; set; }
         /// <summary>
         /// 日照时数
         /// </summary>
-        public double SunshineTime { get; set; }
+        public string SunshineTime { get; set; }
         /// <summary>
         /// 平均地表气温
         /// </summary>
-        public double AverGroundSufaceTemperature { get; set; }
+        public string AverGroundSufaceTemperature { get; set; }
         /// <summary>
         /// 日最高地表气温
         /// </summary>
-        public double MaxGroundSufaceTemperature { get; set; }
+        public string MaxGroundSufaceTemperature { get; set; }
         /// <summary>
         /// 日最低地表气温
         /// </summary>
-        public double MinGroundSufaceTemperature { get; set; }
+        public string MinGroundSufaceTemperature { get; set; }
 
         public string FileName { get; set; }
 
@@ -132,64 +132,64 @@ namespace renhao.Model
             this.FileName = fileName;
             var strs = new Regex("[\\s]+").Replace(data, " ").Split(' ');
             StationCode = Convert.ToInt32(strs[0]);
-            Lat = Convert.ToDouble(strs[1]) / 100;
-            Lng = Convert.ToDouble(strs[2]) / 100;
+            Lat = strs[1];
+            Lng = strs[2];
             Height = Convert.ToDouble(strs[3]) / 10;
             Datetime = Convert.ToDateTime(strs[4] + "-" + strs[5] + "-" + strs[6]);
             
             if (this.FileName.Contains("PRS-10004"))
             {
                 //气压  PRS-10004
-                AverAirPressure = Convert.ToDouble(strs[7]) / 10;
-                MaxAirPressure = Convert.ToDouble(strs[8]) / 10;
-                MinAirPressure = Convert.ToDouble(strs[9]) / 10;
+                AverAirPressure = strs[7];
+                MaxAirPressure = strs[8];
+                MinAirPressure = strs[9];
             }
             else if (this.FileName.Contains("TEM-12001"))
             {
                 //气温  TEM-12001
-                AverTemperature = Convert.ToDouble(strs[7]) / 10;
-                MaxTemperature = Convert.ToDouble(strs[8]) / 10;
-                MinTemperature = Convert.ToDouble(strs[9]) / 10;
+                AverTemperature = strs[7];
+                MaxTemperature = strs[8];
+                MinTemperature = strs[9];
             }
             else if (this.FileName.Contains("RHU-13003"))
             {
                 //相对湿度 RHU-13003
-                AverRelativeHumidity = Convert.ToInt32(strs[7]) / 10;
-                MixRRelativeHumidity = Convert.ToInt32(strs[8]) / 10;
+                AverRelativeHumidity = strs[7];
+                MixRRelativeHumidity = strs[8];
             }
             else if (this.FileName.Contains("PRE-13011"))
             {
                 //降水  PRE-13011
-                Precipitation208 = Convert.ToDouble(strs[7]) / 10;
-                Precipitation820 = Convert.ToDouble(strs[8]) / 10;
-                Precipitation2020 = Convert.ToDouble(strs[9]) / 10;
+                Precipitation208 = strs[7];
+                Precipitation820 = strs[8];
+                Precipitation2020 = strs[9];
             }
             else if (this.FileName.Contains("EVP-13240"))
             {
                 //蒸发  EVP-13241
-                SmallEvaporation = Convert.ToDouble(strs[7]) / 10;
-                BigEvaporation = Convert.ToDouble(strs[8]) / 10;
+                SmallEvaporation = strs[7];
+                BigEvaporation = strs[8];
             }
             else if (this.FileName.Contains("WIN-11002"))
             {
                 //风向风速  WIN-11002
-                AverWindSpeed = Convert.ToDouble(strs[7]) / 10;
-                MaxWindSpeed = Convert.ToDouble(strs[8]) / 10;
-                MaxWindSpeedDirection = Convert.ToInt32(strs[9]);
-                VeryBigWindSpeed = Convert.ToDouble(strs[10]) / 10;
-                VeryBigWindSpeedDirection = Convert.ToInt32(strs[11]);
+                AverWindSpeed = strs[7];
+                MaxWindSpeed = strs[8];
+                MaxWindSpeedDirection = strs[9];
+                VeryBigWindSpeed = strs[10];
+                VeryBigWindSpeedDirection = strs[11];
             }
             else if (this.FileName.Contains("SSD-14032"))
             {
                 //日照时数  SSD-14032
-                SunshineTime = Convert.ToDouble(strs[7]) / 10;
+                SunshineTime = strs[7];
             }
             else if (this.FileName.Contains("GST-12030-0cm"))
             {
                 //0cm地温  GST-12030-0cm
-                AverGroundSufaceTemperature = Convert.ToDouble(strs[7]) / 10;
-                MaxGroundSufaceTemperature = Convert.ToDouble(strs[8]) / 10;
-                MinGroundSufaceTemperature = Convert.ToDouble(strs[9]) / 10;
+                AverGroundSufaceTemperature = strs[7];
+                MaxGroundSufaceTemperature = strs[8];
+                MinGroundSufaceTemperature = strs[9];
             }
         }
 
